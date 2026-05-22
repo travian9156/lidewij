@@ -1,0 +1,1509 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lidewij — Lámparas Artesanales de Guadua</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Jost:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --cream: #F5F0E8;
+      --cream-dark: #EDE5D5;
+      --earth: #8B6F4E;
+      --earth-dark: #6B5238;
+      --earth-light: #C4A882;
+      --guadua: #5C7A3E;
+      --guadua-light: #7A9E52;
+      --guadua-pale: #D4E8C4;
+      --gold: #C8A84B;
+      --gold-light: #E8C96A;
+      --dark: #2A2318;
+      --dark-mid: #3D3327;
+      --text-body: #4A3D2F;
+      --text-muted: #7A6A58;
+      --white: #FDFAF5;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Jost', sans-serif;
+      background: var(--cream);
+      color: var(--text-body);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1.2rem 4rem;
+      background: rgba(245, 240, 232, 0.92);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(139, 111, 78, 0.15);
+    }
+
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      font-weight: 300;
+      color: var(--earth-dark);
+      letter-spacing: 0.15em;
+      text-decoration: none;
+    }
+
+    .nav-logo span {
+      color: var(--guadua);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 2.5rem;
+      list-style: none;
+    }
+
+    .nav-links a {
+      font-size: 0.78rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover { color: var(--guadua); }
+
+    .nav-cta {
+      background: var(--dark);
+      color: var(--gold-light) !important;
+      padding: 0.6rem 1.4rem;
+      border-radius: 2px;
+    }
+
+    .nav-cta:hover { background: var(--earth-dark); color: var(--gold-light) !important; }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding-top: 80px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 70% 50%, rgba(200, 168, 75, 0.08) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 20% 80%, rgba(92, 122, 62, 0.07) 0%, transparent 60%);
+    }
+
+    .hero-texture {
+      position: absolute;
+      inset: 0;
+      background-image:
+        repeating-linear-gradient(
+          90deg,
+          transparent,
+          transparent 60px,
+          rgba(139, 111, 78, 0.03) 60px,
+          rgba(139, 111, 78, 0.03) 61px
+        ),
+        repeating-linear-gradient(
+          0deg,
+          transparent,
+          transparent 60px,
+          rgba(139, 111, 78, 0.03) 60px,
+          rgba(139, 111, 78, 0.03) 61px
+        );
+    }
+
+    .hero-content {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 6rem 4rem 6rem 6rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .hero-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--guadua);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .hero-eyebrow::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: var(--guadua);
+    }
+
+    .hero-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(3rem, 5vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.05;
+      color: var(--dark);
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title em {
+      font-style: italic;
+      color: var(--earth);
+    }
+
+    .hero-subtitle {
+      font-size: 1rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: var(--text-muted);
+      max-width: 440px;
+      margin-bottom: 3rem;
+    }
+
+    .hero-actions {
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--dark);
+      color: var(--gold-light);
+      border: none;
+      padding: 1rem 2.2rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: background 0.3s, color 0.3s;
+      border-radius: 2px;
+    }
+
+    .btn-primary:hover { background: var(--earth-dark); }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--earth-dark);
+      border: 1px solid var(--earth-light);
+      padding: 1rem 2.2rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      cursor: pointer;
+      text-decoration: none;
+      display: inline-block;
+      transition: all 0.3s;
+      border-radius: 2px;
+    }
+
+    .btn-secondary:hover { background: var(--earth-light); color: var(--white); }
+
+    .hero-visual {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      z-index: 2;
+      padding: 4rem;
+    }
+
+    .lamp-illustration {
+      position: relative;
+      width: 320px;
+    }
+
+    .lamp-glow {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 280px;
+      height: 280px;
+      background: radial-gradient(ellipse, rgba(200, 168, 75, 0.25) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: pulse 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { opacity: 0.7; transform: translate(-50%, -50%) scale(1); }
+      50% { opacity: 1; transform: translate(-50%, -50%) scale(1.08); }
+    }
+
+    .lamp-svg {
+      position: relative;
+      z-index: 2;
+      width: 100%;
+      filter: drop-shadow(0 20px 60px rgba(200, 168, 75, 0.3));
+    }
+
+    .hero-stats {
+      position: absolute;
+      bottom: 3rem;
+      left: 6rem;
+      display: flex;
+      gap: 3rem;
+    }
+
+    .stat-item { text-align: center; }
+
+    .stat-number {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.2rem;
+      font-weight: 300;
+      color: var(--earth);
+      display: block;
+    }
+
+    .stat-label {
+      font-size: 0.65rem;
+      font-weight: 400;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+    }
+
+    /* ── HISTORIA ── */
+    .historia {
+      padding: 8rem 6rem;
+      background: var(--dark);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .historia-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 50% 70% at 80% 50%, rgba(92, 122, 62, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 30% 50% at 10% 20%, rgba(200, 168, 75, 0.08) 0%, transparent 50%);
+    }
+
+    .historia-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.4fr;
+      gap: 6rem;
+      align-items: center;
+      position: relative;
+      z-index: 2;
+    }
+
+    .historia-label {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--guadua-light);
+      margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .historia-label::before {
+      content: '';
+      display: inline-block;
+      width: 32px;
+      height: 1px;
+      background: var(--guadua-light);
+    }
+
+    .historia-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 3.5rem);
+      font-weight: 300;
+      line-height: 1.15;
+      color: var(--cream);
+      margin-bottom: 0;
+    }
+
+    .historia-title em {
+      font-style: italic;
+      color: var(--gold);
+    }
+
+    .historia-quote {
+      border-left: 2px solid var(--guadua);
+      padding-left: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    .historia-quote p {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--cream-dark);
+    }
+
+    .historia-text {
+      font-size: 0.95rem;
+      font-weight: 300;
+      line-height: 1.9;
+      color: rgba(245, 240, 232, 0.65);
+    }
+
+    .historia-values {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+      margin-top: 2.5rem;
+    }
+
+    .value-card {
+      background: rgba(255, 255, 255, 0.04);
+      border: 1px solid rgba(200, 168, 75, 0.15);
+      border-radius: 4px;
+      padding: 1.4rem;
+    }
+
+    .value-icon {
+      font-size: 1.4rem;
+      margin-bottom: 0.6rem;
+      display: block;
+    }
+
+    .value-title {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 0.4rem;
+    }
+
+    .value-text {
+      font-size: 0.85rem;
+      font-weight: 300;
+      color: rgba(245, 240, 232, 0.55);
+      line-height: 1.6;
+    }
+
+    /* ── PROCESO ── */
+    .proceso {
+      padding: 8rem 6rem;
+      background: var(--cream);
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 5rem;
+    }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.35em;
+      text-transform: uppercase;
+      color: var(--guadua);
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 300;
+      color: var(--dark);
+      line-height: 1.2;
+    }
+
+    .section-title em {
+      font-style: italic;
+      color: var(--earth);
+    }
+
+    .proceso-steps {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+      position: relative;
+    }
+
+    .proceso-steps::before {
+      content: '';
+      position: absolute;
+      top: 32px;
+      left: 10%;
+      right: 10%;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--earth-light), transparent);
+    }
+
+    .paso {
+      text-align: center;
+      padding: 0 1.5rem;
+      position: relative;
+    }
+
+    .paso-num {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--cream-dark);
+      border: 1px solid var(--earth-light);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      position: relative;
+      z-index: 2;
+    }
+
+    .paso-num span {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--earth-dark);
+    }
+
+    .paso-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.2rem;
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 0.6rem;
+    }
+
+    .paso-text {
+      font-size: 0.82rem;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    /* ── CATÁLOGO ── */
+    .catalogo {
+      padding: 8rem 6rem;
+      background: var(--cream-dark);
+    }
+
+    .productos-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .producto-card {
+      background: var(--white);
+      border-radius: 4px;
+      overflow: hidden;
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+      cursor: pointer;
+    }
+
+    .producto-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 60px rgba(42, 35, 24, 0.12);
+    }
+
+    .producto-img {
+      aspect-ratio: 3/4;
+      background: var(--cream);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .producto-glow {
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 120px;
+      height: 120px;
+      background: radial-gradient(ellipse, rgba(200, 168, 75, 0.35) 0%, transparent 70%);
+    }
+
+    .producto-info {
+      padding: 1.5rem;
+    }
+
+    .producto-coleccion {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--guadua);
+      margin-bottom: 0.4rem;
+    }
+
+    .producto-nombre {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 400;
+      color: var(--dark);
+      margin-bottom: 0.4rem;
+    }
+
+    .producto-desc {
+      font-size: 0.82rem;
+      font-weight: 300;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+    }
+
+    .producto-colores {
+      display: flex;
+      gap: 0.5rem;
+      margin-bottom: 1.2rem;
+    }
+
+    .color-dot {
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      border: 1px solid rgba(0,0,0,0.1);
+    }
+
+    .producto-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 1rem;
+      border-top: 1px solid var(--cream-dark);
+    }
+
+    .producto-cta {
+      font-size: 0.72rem;
+      font-weight: 500;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--earth-dark);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: gap 0.3s;
+    }
+
+    .producto-cta:hover { gap: 0.8rem; }
+    .producto-cta::after { content: '→'; }
+
+    .producto-vida {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+    }
+
+    /* ── GALERÍA ── */
+    .galeria {
+      padding: 8rem 6rem;
+      background: var(--dark);
+    }
+
+    .galeria-grid {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: auto auto;
+      gap: 1rem;
+    }
+
+    .galeria-item {
+      border-radius: 4px;
+      overflow: hidden;
+      position: relative;
+    }
+
+    .galeria-item.big {
+      grid-row: span 2;
+      grid-column: 1;
+    }
+
+    .galeria-placeholder {
+      width: 100%;
+      height: 100%;
+      min-height: 200px;
+      background: var(--dark-mid);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.8rem;
+      color: rgba(245, 240, 232, 0.2);
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+    }
+
+    .galeria-placeholder svg {
+      opacity: 0.2;
+    }
+
+    .galeria-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(42,35,24,0.6) 0%, transparent 50%);
+      display: flex;
+      align-items: flex-end;
+      padding: 1.2rem;
+    }
+
+    .galeria-tag {
+      font-size: 0.65rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--gold-light);
+    }
+
+    /* ── TESTIMONIOS ── */
+    .testimonios {
+      padding: 8rem 6rem;
+      background: var(--cream);
+    }
+
+    .testimonios-grid {
+      max-width: 1000px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+
+    .testimonio-card {
+      background: var(--white);
+      border: 1px solid rgba(139, 111, 78, 0.12);
+      border-radius: 4px;
+      padding: 2rem;
+    }
+
+    .testimonio-stars {
+      color: var(--gold);
+      font-size: 0.85rem;
+      margin-bottom: 1rem;
+      letter-spacing: 0.2em;
+    }
+
+    .testimonio-text {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.1rem;
+      font-style: italic;
+      font-weight: 300;
+      line-height: 1.7;
+      color: var(--dark-mid);
+      margin-bottom: 1.5rem;
+    }
+
+    .testimonio-autor {
+      font-size: 0.75rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      color: var(--earth);
+      text-transform: uppercase;
+    }
+
+    .testimonio-lugar {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      margin-top: 0.2rem;
+    }
+
+    /* ── CONTACTO ── */
+    .contacto {
+      padding: 8rem 6rem;
+      background: var(--dark-mid);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .contacto-bg {
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse 60% 80% at 30% 50%, rgba(92, 122, 62, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 40% 60% at 80% 80%, rgba(200, 168, 75, 0.06) 0%, transparent 50%);
+    }
+
+    .contacto-inner {
+      max-width: 900px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 1fr 1.2fr;
+      gap: 6rem;
+      align-items: start;
+      position: relative;
+      z-index: 2;
+    }
+
+    .contacto-info .historia-label { margin-bottom: 1.5rem; }
+
+    .contacto-title {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 3vw, 3rem);
+      font-weight: 300;
+      color: var(--cream);
+      line-height: 1.2;
+      margin-bottom: 1.5rem;
+    }
+
+    .contacto-title em { font-style: italic; color: var(--gold); }
+
+    .contacto-text {
+      font-size: 0.9rem;
+      font-weight: 300;
+      line-height: 1.8;
+      color: rgba(245, 240, 232, 0.6);
+      margin-bottom: 2.5rem;
+    }
+
+    .contacto-whatsapp {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.8rem;
+      background: #25D366;
+      color: white;
+      text-decoration: none;
+      padding: 1rem 1.8rem;
+      border-radius: 2px;
+      font-size: 0.82rem;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      transition: background 0.3s;
+    }
+
+    .contacto-whatsapp:hover { background: #1EBE57; }
+
+    .contacto-whatsapp svg {
+      width: 20px;
+      height: 20px;
+      fill: white;
+    }
+
+    .contacto-ubicacion {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      margin-top: 1.5rem;
+      font-size: 0.82rem;
+      color: rgba(245, 240, 232, 0.4);
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.7rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: rgba(245, 240, 232, 0.5);
+      margin-bottom: 0.5rem;
+    }
+
+    .form-input,
+    .form-select,
+    .form-textarea {
+      width: 100%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(245, 240, 232, 0.12);
+      border-radius: 2px;
+      padding: 0.85rem 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 300;
+      color: var(--cream);
+      outline: none;
+      transition: border-color 0.3s;
+      appearance: none;
+    }
+
+    .form-input::placeholder,
+    .form-textarea::placeholder {
+      color: rgba(245, 240, 232, 0.25);
+    }
+
+    .form-input:focus,
+    .form-select:focus,
+    .form-textarea:focus {
+      border-color: rgba(200, 168, 75, 0.5);
+    }
+
+    .form-select option { background: var(--dark); }
+
+    .form-textarea { resize: vertical; min-height: 100px; }
+
+    .form-submit {
+      width: 100%;
+      background: var(--gold);
+      color: var(--dark);
+      border: none;
+      padding: 1rem;
+      font-family: 'Jost', sans-serif;
+      font-size: 0.78rem;
+      font-weight: 500;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      cursor: pointer;
+      border-radius: 2px;
+      transition: background 0.3s;
+      margin-top: 0.5rem;
+    }
+
+    .form-submit:hover { background: var(--gold-light); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--dark);
+      padding: 3rem 6rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid rgba(255,255,255,0.05);
+    }
+
+    .footer-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 300;
+      color: var(--cream);
+      letter-spacing: 0.15em;
+    }
+
+    .footer-logo span { color: var(--guadua-light); }
+
+    .footer-tagline {
+      font-size: 0.72rem;
+      color: rgba(245,240,232,0.3);
+      letter-spacing: 0.12em;
+      margin-top: 0.3rem;
+    }
+
+    .footer-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+
+    .footer-links a {
+      font-size: 0.72rem;
+      font-weight: 400;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      color: rgba(245,240,232,0.35);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .footer-links a:hover { color: var(--gold); }
+
+    .footer-copy {
+      font-size: 0.7rem;
+      color: rgba(245,240,232,0.2);
+    }
+
+    /* ── ANIMATIONS ── */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+
+    .fade-up.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 1rem 2rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; }
+      .hero-content { padding: 4rem 2rem; }
+      .hero-visual { padding: 2rem; }
+      .hero-stats { left: 2rem; }
+      .historia { padding: 5rem 2rem; }
+      .historia-inner { grid-template-columns: 1fr; gap: 3rem; }
+      .proceso { padding: 5rem 2rem; }
+      .proceso-steps { grid-template-columns: repeat(2, 1fr); }
+      .proceso-steps::before { display: none; }
+      .catalogo { padding: 5rem 2rem; }
+      .productos-grid { grid-template-columns: 1fr; }
+      .galeria { padding: 5rem 2rem; }
+      .galeria-grid { grid-template-columns: 1fr 1fr; }
+      .galeria-item.big { grid-row: span 1; grid-column: span 2; }
+      .testimonios { padding: 5rem 2rem; }
+      .testimonios-grid { grid-template-columns: 1fr; }
+      .contacto { padding: 5rem 2rem; }
+      .contacto-inner { grid-template-columns: 1fr; gap: 3rem; }
+      footer { padding: 2rem; flex-direction: column; gap: 1.5rem; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <a href="#" class="nav-logo">LIDE<span>W</span>IJ</a>
+    <ul class="nav-links">
+      <li><a href="#historia">Historia</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#galeria">Galería</a></li>
+      <li><a href="#contacto" class="nav-cta">Pedir ahora</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-texture"></div>
+
+    <div class="hero-content">
+      <p class="hero-eyebrow">Marsella, Risaralda · Colombia</p>
+      <h1 class="hero-title">
+        Luz que<br />
+        <em>nace</em><br />
+        del guadual
+      </h1>
+      <p class="hero-subtitle">
+        Cada lámpara Lidewij es una guadua que cumplió su ciclo natural en las montañas del Eje Cafetero. La encontramos, la escuchamos y la transformamos en luz para tu hogar.
+      </p>
+      <div class="hero-actions">
+        <a href="#catalogo" class="btn-primary">Ver colección</a>
+        <a href="#historia" class="btn-secondary">Nuestra historia</a>
+      </div>
+    </div>
+
+    <div class="hero-visual">
+      <div class="lamp-illustration">
+        <div class="lamp-glow"></div>
+        <svg class="lamp-svg" viewBox="0 0 300 450" xmlns="http://www.w3.org/2000/svg">
+          <!-- Cable -->
+          <line x1="150" y1="0" x2="150" y2="80" stroke="#8B6F4E" stroke-width="2"/>
+          <!-- Techo conector -->
+          <ellipse cx="150" cy="80" rx="18" ry="6" fill="#5C3A1E"/>
+
+          <!-- Guadua cuerpo -->
+          <rect x="130" y="86" width="40" height="200" rx="20" fill="#8B6F4E"/>
+          <!-- Nodos de guadua (anillos naturales) -->
+          <rect x="130" y="136" width="40" height="8" rx="2" fill="#6B5238" opacity="0.6"/>
+          <rect x="130" y="186" width="40" height="8" rx="2" fill="#6B5238" opacity="0.6"/>
+          <rect x="130" y="236" width="40" height="8" rx="2" fill="#6B5238" opacity="0.6"/>
+
+          <!-- Perforaciones LED (puntos de luz) -->
+          <circle cx="145" cy="115" r="2.5" fill="#F5E6A0" opacity="0.9"/>
+          <circle cx="158" cy="120" r="2" fill="#F5E6A0" opacity="0.8"/>
+          <circle cx="140" cy="128" r="2" fill="#F5E6A0" opacity="0.7"/>
+          <circle cx="155" cy="108" r="1.8" fill="#F5E6A0" opacity="0.9"/>
+          <circle cx="148" cy="160" r="2.5" fill="#F5E6A0" opacity="0.9"/>
+          <circle cx="138" cy="170" r="2" fill="#F5E6A0" opacity="0.8"/>
+          <circle cx="160" cy="155" r="2" fill="#F5E6A0" opacity="0.7"/>
+          <circle cx="143" cy="210" r="2.5" fill="#F5E6A0" opacity="0.9"/>
+          <circle cx="158" cy="205" r="2" fill="#F5E6A0" opacity="0.8"/>
+          <circle cx="150" cy="220" r="1.8" fill="#F5E6A0" opacity="0.7"/>
+          <circle cx="137" cy="215" r="2" fill="#F5E6A0" opacity="0.8"/>
+
+          <!-- Luz emitida (brillo suave) -->
+          <ellipse cx="150" cy="290" rx="55" ry="18" fill="#C8A84B" opacity="0.12"/>
+          <ellipse cx="150" cy="310" rx="40" ry="10" fill="#C8A84B" opacity="0.08"/>
+
+          <!-- Base -->
+          <ellipse cx="150" cy="290" rx="22" ry="7" fill="#5C3A1E"/>
+          <rect x="138" y="290" width="24" height="30" rx="4" fill="#5C3A1E"/>
+          <ellipse cx="150" cy="320" rx="35" ry="8" fill="#3D2810"/>
+
+          <!-- Rayos de luz decorativos -->
+          <line x1="150" y1="200" x2="90" y2="260" stroke="#C8A84B" stroke-width="0.5" opacity="0.3"/>
+          <line x1="150" y1="200" x2="210" y2="255" stroke="#C8A84B" stroke-width="0.5" opacity="0.3"/>
+          <line x1="150" y1="200" x2="70" y2="290" stroke="#C8A84B" stroke-width="0.5" opacity="0.2"/>
+          <line x1="150" y1="200" x2="230" y2="285" stroke="#C8A84B" stroke-width="0.5" opacity="0.2"/>
+          <line x1="150" y1="200" x2="150" y2="340" stroke="#C8A84B" stroke-width="0.5" opacity="0.25"/>
+        </svg>
+      </div>
+    </div>
+
+    <div class="hero-stats">
+      <div class="stat-item">
+        <span class="stat-number">20–70</span>
+        <span class="stat-label">años de vida</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">100%</span>
+        <span class="stat-label">renovable</span>
+      </div>
+      <div class="stat-item">
+        <span class="stat-number">∞</span>
+        <span class="stat-label">alma natural</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- HISTORIA -->
+  <section class="historia" id="historia">
+    <div class="historia-bg"></div>
+    <div class="historia-inner">
+      <div>
+        <p class="historia-label">Sobre nosotros</p>
+        <h2 class="historia-title">
+          Una guadua<br />
+          que <em>eligió</em><br />
+          iluminar
+        </h2>
+      </div>
+      <div>
+        <div class="historia-quote">
+          <p>"No me cortaron. No me arrancaron. Simplemente me dejé caer, como parte del ritmo perfecto de la naturaleza."</p>
+        </div>
+        <p class="historia-text">
+          Vengo de las montañas de Marsella, Risaralda, en el corazón del Eje Cafetero colombiano. Soy de la especie Guadua angustifolia Kunth, un ser noble que ha sostenido casas, puentes, sueños y silencios durante generaciones.
+          <br /><br />
+          Crecí rodeada de neblina, colibríes y suelos enriquecidos por la ceniza del Nevado del Ruíz. Tras cumplir mi ciclo natural, Lidewij me encontró, me levantó con respeto, me escuchó y me transformó.
+          <br /><br />
+          Hoy soy un Junco de Guadua Lidewij. Un ser que ilumina, que acompaña, que respira contigo.
+        </p>
+        <div class="historia-values">
+          <div class="value-card">
+            <span class="value-icon">🌿</span>
+            <p class="value-title">Renovable</p>
+            <p class="value-text">Ciclo natural completo, sin tala forzada</p>
+          </div>
+          <div class="value-card">
+            <span class="value-icon">✨</span>
+            <p class="value-title">Duradera</p>
+            <p class="value-text">20 a 70 años según el cuidado</p>
+          </div>
+          <div class="value-card">
+            <span class="value-icon">🔄</span>
+            <p class="value-title">Reemplazable</p>
+            <p class="value-text">Todo el sistema LED es sustituible</p>
+          </div>
+          <div class="value-card">
+            <span class="value-icon">🌍</span>
+            <p class="value-title">Responsable</p>
+            <p class="value-text">Vuelve a la tierra al final de su vida</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROCESO -->
+  <section class="proceso" id="proceso">
+    <div class="section-header">
+      <p class="section-eyebrow">Cómo se hacen</p>
+      <h2 class="section-title">El proceso <em>artesanal</em></h2>
+    </div>
+    <div class="proceso-steps">
+      <div class="paso fade-up">
+        <div class="paso-num"><span>01</span></div>
+        <h3 class="paso-title">Selección</h3>
+        <p class="paso-text">Recogemos guaduas que han cumplido su ciclo natural en los guaduales de Marsella, Risaralda.</p>
+      </div>
+      <div class="paso fade-up" style="transition-delay: 0.15s;">
+        <div class="paso-num"><span>02</span></div>
+        <h3 class="paso-title">Preparación</h3>
+        <p class="paso-text">Limpiamos, secamos y curamos la guadua con técnicas tradicionales del Eje Cafetero.</p>
+      </div>
+      <div class="paso fade-up" style="transition-delay: 0.3s;">
+        <div class="paso-num"><span>03</span></div>
+        <h3 class="paso-title">Perforación</h3>
+        <p class="paso-text">Perforamos con precisión artesanal para crear el patrón de luz único de cada pieza.</p>
+      </div>
+      <div class="paso fade-up" style="transition-delay: 0.45s;">
+        <div class="paso-num"><span>04</span></div>
+        <h3 class="paso-title">Iluminación</h3>
+        <p class="paso-text">Instalamos tiras LED a 110V con el color elegido. Sistema reemplazable para toda la vida.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CATÁLOGO -->
+  <section class="catalogo" id="catalogo">
+    <div class="section-header">
+      <p class="section-eyebrow">Colección</p>
+      <h2 class="section-title">Cada pieza, <em>única</em></h2>
+    </div>
+    <div class="productos-grid">
+
+      <!-- Producto 1 -->
+      <div class="producto-card fade-up">
+        <div class="producto-img">
+          <div class="producto-glow"></div>
+          <svg viewBox="0 0 160 220" width="120" xmlns="http://www.w3.org/2000/svg">
+            <line x1="80" y1="0" x2="80" y2="30" stroke="#8B6F4E" stroke-width="1.5"/>
+            <rect x="65" y="30" width="30" height="140" rx="15" fill="#8B6F4E"/>
+            <rect x="65" y="60" width="30" height="5" rx="1" fill="#6B5238" opacity="0.6"/>
+            <rect x="65" y="100" width="30" height="5" rx="1" fill="#6B5238" opacity="0.6"/>
+            <rect x="65" y="140" width="30" height="5" rx="1" fill="#6B5238" opacity="0.6"/>
+            <circle cx="76" cy="48" r="2" fill="#F5E87A" opacity="0.9"/>
+            <circle cx="86" cy="54" r="1.5" fill="#F5E87A" opacity="0.8"/>
+            <circle cx="74" cy="80" r="2" fill="#F5E87A" opacity="0.9"/>
+            <circle cx="88" cy="88" r="1.5" fill="#F5E87A" opacity="0.7"/>
+            <circle cx="78" cy="120" r="2" fill="#F5E87A" opacity="0.9"/>
+            <ellipse cx="80" cy="172" rx="18" ry="5" fill="#5C3A1E"/>
+            <rect x="73" y="172" width="14" height="18" rx="3" fill="#5C3A1E"/>
+            <ellipse cx="80" cy="190" rx="25" ry="6" fill="#3D2810"/>
+            <ellipse cx="80" cy="185" rx="40" ry="12" fill="#C8A84B" opacity="0.1"/>
+          </svg>
+        </div>
+        <div class="producto-info">
+          <p class="producto-coleccion">Colección Sala</p>
+          <h3 class="producto-nombre">Junco Clásico</h3>
+          <p class="producto-desc">Guadua angustifolia de tallo mediano. Luz suave para equilibrio y conexión en espacios sociales.</p>
+          <div class="producto-colores">
+            <div class="color-dot" style="background: #7A9E52;" title="Verde equilibrio"></div>
+            <div class="color-dot" style="background: #F5F0E8;" title="Blanco armonía"></div>
+            <div class="color-dot" style="background: #C8A84B;" title="Dorado creatividad"></div>
+            <div class="color-dot" style="background: #3D2810;" title="Café enfoque"></div>
+          </div>
+          <div class="producto-footer">
+            <a href="#contacto" class="producto-cta">Pedir</a>
+            <span class="producto-vida">Vida: 20–70 años</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 2 -->
+      <div class="producto-card fade-up" style="transition-delay: 0.15s;">
+        <div class="producto-img">
+          <div class="producto-glow"></div>
+          <svg viewBox="0 0 160 220" width="120" xmlns="http://www.w3.org/2000/svg">
+            <line x1="80" y1="0" x2="80" y2="30" stroke="#8B6F4E" stroke-width="1.5"/>
+            <rect x="60" y="30" width="40" height="150" rx="20" fill="#7A6248"/>
+            <rect x="60" y="70" width="40" height="6" rx="2" fill="#5C4A38" opacity="0.6"/>
+            <rect x="60" y="120" width="40" height="6" rx="2" fill="#5C4A38" opacity="0.6"/>
+            <rect x="60" y="165" width="40" height="6" rx="2" fill="#5C4A38" opacity="0.6"/>
+            <circle cx="72" cy="50" r="2.5" fill="#FFFFFF" opacity="0.9"/>
+            <circle cx="88" cy="56" r="2" fill="#FFFFFF" opacity="0.8"/>
+            <circle cx="76" cy="62" r="2" fill="#FFFFFF" opacity="0.7"/>
+            <circle cx="70" cy="95" r="2.5" fill="#FFFFFF" opacity="0.9"/>
+            <circle cx="90" cy="100" r="2" fill="#FFFFFF" opacity="0.8"/>
+            <circle cx="80" cy="108" r="2" fill="#FFFFFF" opacity="0.7"/>
+            <circle cx="74" cy="140" r="2.5" fill="#FFFFFF" opacity="0.9"/>
+            <circle cx="88" cy="148" r="2" fill="#FFFFFF" opacity="0.8"/>
+            <ellipse cx="80" cy="182" rx="22" ry="6" fill="#5C3A1E"/>
+            <rect x="71" y="182" width="18" height="20" rx="4" fill="#5C3A1E"/>
+            <ellipse cx="80" cy="202" rx="30" ry="7" fill="#3D2810"/>
+            <ellipse cx="80" cy="195" rx="50" ry="15" fill="#C8A84B" opacity="0.08"/>
+          </svg>
+        </div>
+        <div class="producto-info">
+          <p class="producto-coleccion">Colección Descanso</p>
+          <h3 class="producto-nombre">Junco Sereno</h3>
+          <p class="producto-desc">Tallo ancho con luz blanca tenue. Diseñado para la habitación, inspira descanso y armonía profunda.</p>
+          <div class="producto-colores">
+            <div class="color-dot" style="background: #F5F0E8;" title="Blanco armonía"></div>
+            <div class="color-dot" style="background: #B8D4E8;" title="Azul calma"></div>
+          </div>
+          <div class="producto-footer">
+            <a href="#contacto" class="producto-cta">Pedir</a>
+            <span class="producto-vida">Vida: 20–70 años</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Producto 3 -->
+      <div class="producto-card fade-up" style="transition-delay: 0.3s;">
+        <div class="producto-img">
+          <div class="producto-glow" style="background: radial-gradient(ellipse, rgba(200, 168, 75, 0.45) 0%, transparent 70%);"></div>
+          <svg viewBox="0 0 160 220" width="120" xmlns="http://www.w3.org/2000/svg">
+            <line x1="80" y1="0" x2="80" y2="25" stroke="#8B6F4E" stroke-width="1.5"/>
+            <rect x="68" y="25" width="24" height="120" rx="12" fill="#6B5238"/>
+            <rect x="68" y="55" width="24" height="4" rx="1" fill="#4A3828" opacity="0.7"/>
+            <rect x="68" y="90" width="24" height="4" rx="1" fill="#4A3828" opacity="0.7"/>
+            <rect x="68" y="125" width="24" height="4" rx="1" fill="#4A3828" opacity="0.7"/>
+            <circle cx="76" cy="42" r="2" fill="#FFD700" opacity="1"/>
+            <circle cx="85" cy="47" r="1.8" fill="#FFD700" opacity="0.9"/>
+            <circle cx="74" cy="52" r="1.5" fill="#FFD700" opacity="0.8"/>
+            <circle cx="80" cy="72" r="2" fill="#FFD700" opacity="1"/>
+            <circle cx="72" cy="78" r="1.8" fill="#FFD700" opacity="0.9"/>
+            <circle cx="86" cy="83" r="1.5" fill="#FFD700" opacity="0.8"/>
+            <circle cx="78" cy="108" r="2" fill="#FFD700" opacity="1"/>
+            <circle cx="84" cy="115" r="1.5" fill="#FFD700" opacity="0.9"/>
+            <ellipse cx="80" cy="148" rx="14" ry="4" fill="#5C3A1E"/>
+            <rect x="74" y="148" width="12" height="16" rx="3" fill="#5C3A1E"/>
+            <ellipse cx="80" cy="164" rx="20" ry="5" fill="#3D2810"/>
+            <ellipse cx="80" cy="158" rx="55" ry="18" fill="#C8A84B" opacity="0.2"/>
+          </svg>
+        </div>
+        <div class="producto-info">
+          <p class="producto-coleccion">Colección Creatividad</p>
+          <h3 class="producto-nombre">Junco Dorado</h3>
+          <p class="producto-desc">Luz cálida dorada para oficinas y estudios. Potencia la concentración y estimula la creatividad.</p>
+          <div class="producto-colores">
+            <div class="color-dot" style="background: #C8A84B;" title="Dorado creatividad"></div>
+            <div class="color-dot" style="background: #E8C96A;" title="Amarillo energía"></div>
+          </div>
+          <div class="producto-footer">
+            <a href="#contacto" class="producto-cta">Pedir</a>
+            <span class="producto-vida">Vida: 20–70 años</span>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- GALERÍA -->
+  <section class="galeria" id="galeria">
+    <div class="section-header">
+      <p class="section-eyebrow" style="color: var(--guadua-light);">Galería</p>
+      <h2 class="section-title" style="color: var(--cream);">Luz en tu <em style="color: var(--gold);">espacio</em></h2>
+    </div>
+    <div class="galeria-grid">
+      <div class="galeria-item big">
+        <div class="galeria-placeholder" style="min-height: 420px;">
+          <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+          </svg>
+          <span>Tu foto aquí</span>
+        </div>
+        <div class="galeria-overlay">
+          <span class="galeria-tag">Sala — Luz Verde Equilibrio</span>
+        </div>
+      </div>
+      <div class="galeria-item">
+        <div class="galeria-placeholder" style="min-height: 200px;">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+          </svg>
+          <span>Tu foto aquí</span>
+        </div>
+        <div class="galeria-overlay">
+          <span class="galeria-tag">Habitación — Luz Blanca</span>
+        </div>
+      </div>
+      <div class="galeria-item">
+        <div class="galeria-placeholder" style="min-height: 200px;">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+          </svg>
+          <span>Tu foto aquí</span>
+        </div>
+        <div class="galeria-overlay">
+          <span class="galeria-tag">Oficina — Luz Dorada</span>
+        </div>
+      </div>
+      <div class="galeria-item">
+        <div class="galeria-placeholder" style="min-height: 200px;">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+          </svg>
+          <span>Tu foto aquí</span>
+        </div>
+        <div class="galeria-overlay">
+          <span class="galeria-tag">Restaurante — Ambiente</span>
+        </div>
+      </div>
+      <div class="galeria-item">
+        <div class="galeria-placeholder" style="min-height: 200px;">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1">
+            <rect x="3" y="3" width="18" height="18" rx="2"/><circle cx="8.5" cy="8.5" r="1.5"/><path d="m21 15-5-5L5 21"/>
+          </svg>
+          <span>Tu foto aquí</span>
+        </div>
+        <div class="galeria-overlay">
+          <span class="galeria-tag">Detalle — Perforaciones</span>
+        </div>
+      </div>
+    </div>
+    <p style="text-align: center; margin-top: 2rem; font-size: 0.78rem; color: rgba(245,240,232,0.3); letter-spacing: 0.1em;">
+      Pronto agregaremos fotos reales de nuestras piezas · Síguenos en Instagram
+    </p>
+  </section>
+
+  <!-- TESTIMONIOS -->
+  <section class="testimonios" id="testimonios">
+    <div class="section-header">
+      <p class="section-eyebrow">Lo que dicen</p>
+      <h2 class="section-title">Voces de quienes <em>nos eligieron</em></h2>
+    </div>
+    <div class="testimonios-grid">
+      <div class="testimonio-card fade-up">
+        <p class="testimonio-stars">★★★★★</p>
+        <p class="testimonio-text">"Desde que llegó el junco a mi sala, el ambiente cambió por completo. Es naturaleza viva dentro de casa."</p>
+        <p class="testimonio-autor">Laura M.</p>
+        <p class="testimonio-lugar">Pereira, Risaralda</p>
+      </div>
+      <div class="testimonio-card fade-up" style="transition-delay: 0.15s;">
+        <p class="testimonio-stars">★★★★★</p>
+        <p class="testimonio-text">"Lo regalé en una inauguración de oficina. Todos preguntan de dónde es. La historia de la guadua los enamora."</p>
+        <p class="testimonio-autor">Andrés C.</p>
+        <p class="testimonio-lugar">Manizales, Caldas</p>
+      </div>
+      <div class="testimonio-card fade-up" style="transition-delay: 0.3s;">
+        <p class="testimonio-stars">★★★★★</p>
+        <p class="testimonio-text">"Tres meses después de tenerlo, me di cuenta de que reemplazó el olor a plástico por el frescor del bosque."</p>
+        <p class="testimonio-autor">Carolina T.</p>
+        <p class="testimonio-lugar">Armenia, Quindío</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACTO -->
+  <section class="contacto" id="contacto">
+    <div class="contacto-bg"></div>
+    <div class="contacto-inner">
+      <div class="contacto-info">
+        <p class="historia-label" style="color: var(--guadua-light);">Pide tu pieza</p>
+        <h2 class="contacto-title">
+          Cada junco se<br />
+          hace con <em>amor</em>
+        </h2>
+        <p class="contacto-text">
+          Cada Lidewij es una pieza única, hecha a mano para ti. Cuéntanos qué espacio quieres transformar y te asesoramos en el color y tamaño perfecto.
+        </p>
+        <a
+          href="https://wa.me/573000000000?text=Hola%20Lidewij%2C%20quiero%20saber%20más%20sobre%20sus%20lámparas%20artesanales%20de%20guadua"
+          target="_blank"
+          class="contacto-whatsapp"
+        >
+          <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+            <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.118 1.532 5.849L.064 23.5l5.793-1.44A11.94 11.94 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.894a9.882 9.882 0 0 1-5.031-1.374l-.36-.214-3.737.929.987-3.614-.236-.372A9.844 9.844 0 0 1 2.106 12C2.106 6.533 6.533 2.106 12 2.106S21.894 6.533 21.894 12 17.467 21.894 12 21.894z"/>
+          </svg>
+          Escríbenos por WhatsApp
+        </a>
+        <p class="contacto-ubicacion">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>
+          </svg>
+          Dosquebradas, Risaralda · Colombia
+        </p>
+      </div>
+
+      <div class="contacto-form">
+        <form id="lidewij-form" onsubmit="handleSubmit(event)">
+          <div class="form-group">
+            <label class="form-label" for="nombre">Nombre</label>
+            <input class="form-input" type="text" id="nombre" placeholder="Tu nombre completo" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="ciudad">Ciudad</label>
+            <input class="form-input" type="text" id="ciudad" placeholder="¿Desde dónde nos escribes?" required />
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="espacio">¿Dónde va la lámpara?</label>
+            <select class="form-select" id="espacio" required>
+              <option value="" disabled selected>Selecciona el espacio</option>
+              <option value="sala">Sala — equilibrio y conexión</option>
+              <option value="habitacion">Habitación — descanso y armonía</option>
+              <option value="oficina">Oficina o estudio — creatividad</option>
+              <option value="negocio">Negocio o restaurante — ambiente</option>
+              <option value="regalo">Es un regalo</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="mensaje">Cuéntanos más</label>
+            <textarea class="form-textarea" id="mensaje" placeholder="¿Tienes alguna idea especial? ¿Un color en mente? ¿Es para regalo?"></textarea>
+          </div>
+          <button type="submit" class="form-submit" id="submit-btn">
+            Enviar mi solicitud
+          </button>
+          <p id="form-msg" style="margin-top: 1rem; font-size: 0.82rem; color: var(--guadua-light); display: none; text-align: center;"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div>
+      <p class="footer-logo">LIDE<span>W</span>IJ</p>
+      <p class="footer-tagline">Naturaleza viva en tu hogar · Dosquebradas, Risaralda</p>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#historia">Historia</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#catalogo">Catálogo</a></li>
+      <li><a href="#contacto">Contacto</a></li>
+    </ul>
+    <p class="footer-copy">© 2025 Lidewij · Hecho con 🌿 en Colombia</p>
+  </footer>
+
+  <script>
+    // Animaciones scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    // Formulario
+    function handleSubmit(e) {
+      e.preventDefault();
+      const btn = document.getElementById('submit-btn');
+      const msg = document.getElementById('form-msg');
+      const nombre = document.getElementById('nombre').value;
+      const ciudad = document.getElementById('ciudad').value;
+      const espacio = document.getElementById('espacio').value;
+      const mensaje = document.getElementById('mensaje').value;
+
+      btn.textContent = 'Enviando...';
+      btn.disabled = true;
+
+      const waMsg = encodeURIComponent(
+        `Hola Lidewij! Soy ${nombre} de ${ciudad}.\n\nQuiero una lámpara para: ${espacio}\n\n${mensaje ? 'Mensaje: ' + mensaje : ''}`
+      );
+      const waUrl = `https://wa.me/573000000000?text=${waMsg}`;
+
+      setTimeout(() => {
+        btn.textContent = 'Solicitud enviada ✓';
+        msg.style.display = 'block';
+        msg.textContent = '¡Gracias! Te redirigimos a WhatsApp para confirmar tu pedido.';
+        setTimeout(() => { window.open(waUrl, '_blank'); }, 1500);
+      }, 800);
+    }
+
+    // Nav activo en scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-links a');
+
+    window.addEventListener('scroll', () => {
+      let current = '';
+      sections.forEach(section => {
+        if (window.scrollY >= section.offsetTop - 120) {
+          current = section.getAttribute('id');
+        }
+      });
+      navLinks.forEach(link => {
+        link.style.color = link.getAttribute('href') === '#' + current
+          ? 'var(--guadua)'
+          : '';
+      });
+    });
+  </script>
+</body>
+</html>
